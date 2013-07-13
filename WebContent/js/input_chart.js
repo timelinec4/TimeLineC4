@@ -78,6 +78,10 @@
     		        }
     		    };
     	 
+    	 Y.on("click", function(e) {
+    	        console.log(($(".yui3-chart-tooltip").val()));
+    	   }, ".yui3-seriesmarker");
+    	 
     	 var myTooltip = {
     			    styles: { 
     			        backgroundColor: "#333",
