@@ -7,12 +7,14 @@
     		            values:{
     		                label:{
     		                    rotation:-45,
+    		                    width: 0,
     		                    color:"white"
     		                }
     		            },
     		            date:{
     		                label:{
     		                    rotation:-45,
+    		                    width: 0,
     		                    color: "white"
     		                }
     		            }
@@ -24,17 +26,17 @@
     		                        color:"#ff8888"
     		                    },
     		                    border:{
-    		                        color:"#ff0000"
+    		                        color:"white"
     		                    },
     		                    over:{
     		                        fill:{
     		                            color:"#ffffff"
     		                        },
     		                        border:{
-    		                            color:"#fe0000"
+    		                            color:"white"
     		                        },
-    		                        width: 6,
-    		                        height: 12
+    		                        width: 0,
+    		                        height: 0
     		                    }
     		                },
     		                line:{
@@ -43,25 +45,25 @@
     		            },
     		            photos:{
     		                line:{
-    		                    color:"#999"
+    		                    color:"red"
     		                },
     		                marker:
     		                {
     		                    fill:{
-    		                        color:"#ddd"
+    		                        color:"yello"
     		                    },
     		                    border:{
-    		                        color:"#999"
+    		                        color:"white"
     		                    },
     		                    over: {
     		                        fill: {
     		                            color: "red"
     		                        },
     		                        border: {
-    		                            color: "#000"
+    		                            color: "white"
     		                        },
-    		                        width: 2,
-    		                        height: 12
+    		                        width: 1,
+    		                        height: 10
     		                    }
     		                }
     		            },
@@ -71,7 +73,7 @@
     		                        fill: {
     		                            color: "#eee"
     		                        },
-    		                        width: 2,
+    		                        width: 1,
     		                        height: 12
     		                    }
     		                }
@@ -198,23 +200,6 @@
         	}
         	return myDataValuesArry;
         }
-        var result = getDataValues(2013,month);
-        
-        var mychart = new Y.Chart({
-				dataProvider: getDataValues(2013,month),
-				render:"#mychart", 
-				styles: styleDef, 
-				categoryKey:"date",
-				seriesKeys:["photos","videos"],
-				tooltip:myTooltip
-			});
-			
-			
-			 Y.on("click", function(e)  {
-                 appendPix(document.getElementById("hiddenDate").value);
-
-    	   }, ".yui3-seriesmarker");
-
 			 
 	    refreshChart = function( dataValues )
 	    {
@@ -263,6 +248,115 @@
         }, "#next");
 
         appendPix = function( urls ){
+
+          $('#centerdiv').empty();
+            var imgstr = "<img src id=\"mainimg\">";
+            $('#centerdiv').html(imgstr);
+            
+            if(urls.length>0 && urls.length==1)
+            	{
+    		if( urls[0] && urls[0].length > 0 ) 
+    			$("#mainimg").attr("src",urls[0]);  
+            	}
+    		else
+    		{
+                var newurls= [];
+                var counter = 0;
+                for(var k=0; k<urls.length; k++)
+                {
+                    if(urls[k] && urls[k].length>0)
+                    {
+                        newurls[counter] = urls[k];
+                        counter++;
+                    }
+
+                }
+    			var ulElement = document.createElement("ul");
+    			 ulElement.setAttribute("class","slides");
+    			 
+    			 document.getElementById('centerdiv').appendChild(ulElement);
+                var len = newurls.length;
+    			 for(var i=0; i<len; i++)
+    			 {
+    				if(newurls[i] && newurls[i].length>0)
+    				{
+    				
+    					 var inpElement = document.createElement("input");
+    					 inpElement.setAttribute("type","radio");
+    					 inpElement.setAttribute("name","radio-btn");
+    					 inpElement.setAttribute("id","img-"+(i+1));
+
+                        if(i==0) inpElement.setAttribute("checked","true")
+    					 ulElement.appendChild(inpElement);
+    					 
+    					 var liElement = document.createElement("li");
+    					 liElement.setAttribute("class","slide-container");
+    					 ulElement.appendChild(liElement);
+    					 
+    					 var div1ele = document.createElement("div");
+    					 div1ele.setAttribute("class","slide");
+    					 liElement.appendChild(div1ele);
+    					 
+    					 var img1ele = document.createElement("img");
+    					 img1ele.setAttribute("src",newurls[i]);
+    					 div1ele.appendChild(img1ele);
+    					 
+    					 var div2ele = document.createElement("div");
+    					 div2ele.setAttribute("class","nav");
+    					 liElement.appendChild(div2ele);
+    					 
+    					 var lab1ele = document.createElement("label");
+    					 if(i==0)
+    					 {
+    						lab1ele.setAttribute("for","img-1");
+    					 }
+    					 else
+    					 {
+    						lab1ele.setAttribute("for","img-"+i);
+    					 }
+    					 lab1ele.setAttribute("class","prev");
+    					 lab1ele.setAttribute("value","\&#x2039;");
+    					 div2ele.appendChild(lab1ele);
+    					 
+    					 var lab2ele = document.createElement("label");
+    					 if(i!=len-1 )
+    					 {
+    						lab2ele.setAttribute("for","img-"+(i+2));
+    					 }
+    					 else
+    					 {
+    						lab2ele.setAttribute("for","img-1");
+
+    					 }
+    					 lab2ele.setAttribute("class","next");
+    					 lab2ele.setAttribute("value","\&#x203a;");
+    					 div2ele.appendChild(lab2ele);
+    					 
+    					
+    					
+    			    
+    				}
+    			 }
+    			 
+    			 var li2Element = document.createElement("li");
+    					 li2Element.setAttribute("class","nav-dots");
+    					 ulElement.appendChild(li2Element);
+    					 
+    			 for(var j=0; j<newurls.length; j++)
+    			 {
+    					
+    					var lab3ele = document.createElement("label");
+    					lab3ele.setAttribute("for","img-"+(j+1));
+    					lab3ele.setAttribute("class","nav-dot");
+    					lab3ele.setAttribute("id","img-dot-"+(j+1));
+    					ulElement.appendChild(lab3ele);
+    			 }
+    		}
+        }
+			
+       });
+    
+       /* appendPix = function( urls ){
 
           $('#centerdiv').empty();
             var imgstr = "<img src id=\"mainimg\">";
@@ -357,5 +451,5 @@
     		}
         }
 			
-    });
+    });*/
 })();

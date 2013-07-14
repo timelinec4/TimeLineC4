@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
 
-html, body { background: #333 url("http://codepen.io/images/classy_fabric.png"); }
+html, body { background: white}
 
 .slides {
     padding: 0;
@@ -123,12 +123,13 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 	background: rgba(0, 0, 0, 0.8);
 }
 
-#mychart {
-    width:85%;
-    min-width: 750px;
-    height:150px;
+#mychart, #chartParent {
+width: 90%;
+min-width: 750px;
+height: 80px;
+margin-top: 20px;
+padding: 0;
 }
-
 #centerdiv {
 
     width:85%;
@@ -137,6 +138,35 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
     background:#fff;
 
 }
-body {
-	background:#fff;
+
+#parentdiv {
+    height: 420px;
 }
+
+#botton_nav_ul {
+	float: left;
+	display: inline-block;
+	margin-top: 5px;
+	margin-left: 105px;
+	width: 100%;
+	padding: 0;
+}
+#botton_nav_ul li {
+    display: block;
+    float: left;
+}
+body {
+    background: white;
+}
+#prev_li, #next_li {
+    margin-top: -20px;
+}
+
+#prev img, #next img {
+	opacity: 0.5;
+}
+
+#prev img:hover, #next img:hover{
+	opacity: 1.0;
+}
+	

@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	
 	getFlickrPicsURL = function(start,end){
-		var url = "http://query.yahooapis.com/v1/public/yql?q=select%20dates.lastupdate%2Cid%2Cfarm%2Cserver%2C%20secret%20from%20flickr.photos.info("+start+"%2C"+end+")%20where%20photo_id%20in%20(select%20id%20from%20flickr.photosets.photos%20where%20photoset_id%3D'72157624375645496'%20and%20api_key%3D%22a510130d797fe64c420970494e6a9a1a%22)%20and%20api_key%3D%22a510130d797fe64c420970494e6a9a1a%22%20order%20by%20flickr.photos.info.dates.lastupdate&format=json&callback=?"
+		//72157624375645496
+		var url = "http://query.yahooapis.com/v1/public/yql?q=select%20dates.lastupdate%2Cid%2Cfarm%2Cserver%2C%20secret%20from%20flickr.photos.info("+start+"%2C"+end+")%20where%20photo_id%20in%20(select%20id%20from%20flickr.photosets.photos("+start+"%2C"+end+")%20where%20photoset_id%3D'72157614096349146'%20and%20api_key%3D%22a510130d797fe64c420970494e6a9a1a%22)%20and%20api_key%3D%22a510130d797fe64c420970494e6a9a1a%22%20order%20by%20flickr.photos.info.dates.lastupdate&format=json&callback=?"
 		//var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20flickr.photos.info("+start+"%2C"+end+")%20where%20photo_id%20in%20(select%20id%20from%20flickr.photosets.photos%20where%20photoset_id%3D'72157612249760312'%20and%20api_key%3D%22a510130d797fe64c420970494e6a9a1a%22)%20and%20api_key%3D%22a510130d797fe64c420970494e6a9a1a%22%3B&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=?";
 		return url;
 	};
